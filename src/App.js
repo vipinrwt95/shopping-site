@@ -6,6 +6,7 @@ import { uiActions } from './store/ui-slice';
 import {useEffect} from 'react'
 import {Fragment} from 'react';
 import Notification from './components/UI/Notification';
+import { fetchCartData } from './store/cart-action';
 
 let isInitial=true;
 function App() {
@@ -13,6 +14,11 @@ function App() {
   const showCart =  useSelector((state)=>state.ui.cartIsvisible)
   const cart=useSelector((state)=>state.cart);
   const notification=useSelector((state=>state.ui.notification))
+  useEffect(()=>
+  {
+    dispatch(fetchCartData());
+    
+  },[dispatch])
   useEffect(()=>
   {
     if(isInitial)
